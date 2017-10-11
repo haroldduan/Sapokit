@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{5FE3949C-3966-4649-A9D8-6B7E30B3116B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <RootNamespace>Sapokit</RootNamespace>
+    <AssemblyName>Sapokit</AssemblyName>
+    <MainFile>Program.py</MainFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputType>WinExe</OutputType>
+    <DebugInfo>True</DebugInfo>
+    <StartArguments>-X:Debug program.py</StartArguments>
+    <StartWorkingDirectory>.\</StartWorkingDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files (x86)\SharpDevelop\4.4\bin\..\AddIns\BackendBindings\PythonBinding\ipy.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <OutputType>WinExe</OutputType>
+    <StartArguments>Program.py</StartArguments>
+    <StartWorkingDirectory>.\</StartWorkingDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files (x86)\SharpDevelop\4.4\bin\..\AddIns\BackendBindings\PythonBinding\ipy.exe</StartProgram>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.SAPbobsCOM">
+      <HintPath>DLLs\Interop.SAPbobsCOM.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Interop.SAPbouiCOM">
+      <HintPath>DLLs\Interop.SAPbouiCOM.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IronPython">
+      <HintPath>C:\Program Files %28x86%29\SharpDevelop\4.4\bin\..\AddIns\BackendBindings\PythonBinding\IronPython.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>C:\Program Files %28x86%29\SharpDevelop\4.4\bin\..\AddIns\BackendBindings\PythonBinding\IronPython.Modules.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="biz\sbo_application.py" />
+    <Compile Include="biz\sbo_company.py" />
+    <Compile Include="biz\__init__.py" />
+    <Compile Include="shell.py" />
+    <Compile Include="Program.py" />
+    <Compile Include="ui\creator.py" />
+    <Compile Include="ui\importer.py" />
+    <Compile Include="ui\loginer.py">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ui\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DLLs\Interop.SAPbobsCOM.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DLLs\Interop.SAPbouiCOM.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ui" />
+    <Folder Include="DLLs" />
+    <Folder Include="biz" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="shell.resx">
+      <DependentUpon>shell.py</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\creator.resx">
+      <DependentUpon>creator.py</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\importer.resx">
+      <DependentUpon>importer.py</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\loginer.resx">
+      <DependentUpon>loginer.py</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(PythonBinPath)\SharpDevelop.Build.Python.targets" />
+</Project>
